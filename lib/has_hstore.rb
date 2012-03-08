@@ -30,7 +30,7 @@ module HasHstore
       end
       # define writer
       @module.send(:define_method, "#{attribute}=") do |value|
-        hstore = HasHstore::Hstore.new(self[attribute] || options[:default])
+        hstore = HasHstore::Hstore.new(value)
         self.instance_variable_set("@#{attribute}", hstore)
         self[attribute] = hstore.to_s
         hstore
