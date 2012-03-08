@@ -12,11 +12,11 @@ module HasHstore
     end
     
     def [](key)
-      super(key.to_s)
+      super(key.nil? ? key : key.to_s)
     end
     
     def []=(key, value)
-      super(key.to_s, value)
+      super(key.nil? ? key : key.to_s, value)
     end
 
   end
