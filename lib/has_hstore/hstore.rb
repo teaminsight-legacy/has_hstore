@@ -24,7 +24,7 @@ module HasHstore
         "NULL"
       end
     end
-    
+
     def get(key)
       @data[key]
     end
@@ -35,6 +35,13 @@ module HasHstore
 
     def delete(key)
       @data.delete(key)
+    end
+    
+    def method_missing(method, *args, &block)
+      @data.send(method, *args, &block)
+    end
+    def respond_to?(method)
+      super || @data.respond_to?(method)
     end
 
     protected
